@@ -17,11 +17,45 @@ template<typename T, typename C>
 class GestionnaireGenerique
 {
 public:
-	C getConteneur() const; //TODO
-	void ajouter(T t);//TODO
-	int getNombreElements() const;//TODO
+	/**
+	* Fonction getConteneur()
+	* Retourne une copie du conteneur_.
+	*/
+	C getConteneur() const; //TODO ok
+
+	/** 
+	* Fonction ajouter(T t)
+	* Ajoute un élément dans le conteneur_
+	*/
+	void ajouter(T t);//TODO ok
+
+	/**
+	* Fonction getNombreElements()
+	* retourne le nombre d'élements dans conteneur_
+	*/
+	int getNombreElements() const;//TODO ok
 
 protected:
 	C conteneur_;
 };
+
+
+
+
+template<typename T, typename C>
+C GestionnaireGenerique<T, C>::getConteneur() const
+{
+	return conteneur_;
+}
+
+template<typename T, typename C>
+void GestionnaireGenerique<T, C>::ajouter(T t) {
+	conteneur_.insert(conteneur_.end(), t);
+}
+
+template<typename T, typename C>
+int GestionnaireGenerique<T, C>::getNombreElements() const
+{
+	return conteneur_.size();
+}
 

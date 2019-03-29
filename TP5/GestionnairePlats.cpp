@@ -49,4 +49,6 @@ pair<string, Plat*> GestionnairePlats::lirePlatDe(LectureFichierEnSections& fich
 	return pair<string, Plat*>(plat->getNom(), plat);
 }
 
-
+GestionnairePlats::GestionnairePlats(const string & nomFichier, TypeMenu type)
+{
+}

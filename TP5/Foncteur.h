@@ -12,14 +12,18 @@
 using namespace std;
 
 
-class FoncteurPlatMoinsCher
-{ // TODO
-
-    
+class FoncteurPlatMoinsCher : public GestionnairePlats
+{ // TODO ok
+	bool operator() (const pair<string, Plat*> & plat1, const pair<string, Plat*> & plat2);
 };
 
 class FoncteurIntervalle
-{
-   // TODO
+{ // TODO ok
+public:
+	bool operator() (const pair<string, Plat*> & plat);
+
+private:
+	int borneSup_;
+	int borneInf_;
 };
 

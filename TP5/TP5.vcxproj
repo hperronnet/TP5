@@ -89,6 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -148,6 +149,7 @@
     <ClCompile Include="ClientOccasionnel.cpp" />
     <ClCompile Include="ClientPrestige.cpp" />
     <ClCompile Include="ClientRegulier.cpp" />
+    <ClCompile Include="Foncteur.cpp" />
     <ClCompile Include="GestionnairePlats.cpp" />
     <ClCompile Include="GestionnaireTables.cpp" />
     <ClCompile Include="LectureFichierEnSections.cpp" />
