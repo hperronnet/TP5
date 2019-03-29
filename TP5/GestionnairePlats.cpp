@@ -93,7 +93,8 @@ Plat * GestionnairePlats::trouverPlatMoinsCher() const
 	pair<string, Plat*> platMoinsCher;
 	FoncteurPlatMoinsCher f();
 	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
-		f(it, platMoinsCher);												//Marche pas, a refaire
+		if(f(*it, platMoinsCher)){				//Marche pas, a refaire
+			platMoinsCher = *it;
  	}
 
 	return platMoinsCher.second;
