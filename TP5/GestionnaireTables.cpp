@@ -18,4 +18,3 @@ void GestionnaireTables::lireTables(const string& nomFichier)
 		ajouter(new Table(id, nbPlaces));
 	}
 }
-

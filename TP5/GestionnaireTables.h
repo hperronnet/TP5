@@ -12,7 +12,7 @@
 
 #include <set>
 
-class GestionnaireTables // TODO : Ajouter l'héritage 
+class GestionnaireTables : public GestionnaireGenerique<Table*, set<Table*>>
 {
 public:
 	GestionnaireTables() = default;
@@ -21,4 +21,5 @@ public:
 	void lireTables(const string& nomFichier);
 
 	void afficherTables(ostream& os) const; // TODO
+
 };
