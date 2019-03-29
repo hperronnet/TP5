@@ -14,14 +14,24 @@ using namespace std;
 
 class FoncteurPlatMoinsCher : public GestionnairePlats
 { // TODO ok
-	bool operator() (const pair<string, Plat*> & plat1, const pair<string, Plat*> & plat2);
+public:
+	bool operator() (const pair<string, Plat*> & plat1, const pair<string, Plat*> & plat2)
+	{
+		return plat1.second->getPrix() < plat2.second->getPrix();
+	}
+
 };
 
 class FoncteurIntervalle
 { // TODO ok
 public:
-	bool operator() (const pair<string, Plat*> & plat);
 
+	FoncteurIntervalle(int borneInf, int borneSup) : borneInf_(borneInf), borneSup_(borneSup){}
+
+	bool operator()(const pair<string, Plat*>& plat)
+	{
+		return (plat.second->getPrix() < borneSup_) && (plat.second->getPrix > borneInf_);
+	}
 private:
 	int borneSup_;
 	int borneInf_;

@@ -15,26 +15,27 @@
 #include <map>
 #include <algorithm>
 #include <functional>
+//#include <iterator>
 
 using namespace std;
 
 class GestionnairePlats : public GestionnaireGenerique<pair<string, Plat*>, map<string, Plat*>>
 {
 public:
-	GestionnairePlats(const string& nomFichier, TypeMenu type); //TODO
-	GestionnairePlats(GestionnairePlats* gestionnaire); // TODO
+	GestionnairePlats(const string& nomFichier, TypeMenu type); //TODO ok
+	GestionnairePlats(GestionnairePlats* gestionnaire); // TODO ok
 
-	~GestionnairePlats(); // TODO
+	~GestionnairePlats(); // TODO ok
 
-	TypeMenu getType() const; // TODO
+	TypeMenu getType() const; // TODO ok
 
-	Plat* allouerPlat(Plat*); // TODO
+	Plat* allouerPlat(Plat*); // TODO ok
 
-	Plat* trouverPlatMoinsCher() const; // TODO
-	Plat* trouverPlatPlusCher() const; // TODO
+	Plat* trouverPlatMoinsCher() const; // TODO ok
+	Plat* trouverPlatPlusCher() const; // TODO ok
 
-	Plat* trouverPlat(const string& nom) const; // TODO
-	vector<pair<string, Plat*>> getPlatsEntre(double borneInf, double borneSup); // TODO
+	Plat* trouverPlat(const string& nom) const; // TODO ok
+	vector<pair<string, Plat*>> getPlatsEntre(double borneInf, double borneSup); // TODO ok
 	void lirePlats(const string& nomFichier, TypeMenu type);
 	pair<string, Plat*> lirePlatDe(LectureFichierEnSections& fichier);
 

@@ -11,15 +11,77 @@
 #include "PlatBioVege.h"
 
 
+GestionnairePlats::GestionnairePlats(const string & nomFichier, TypeMenu type) : type_(type)
+{
+	lirePlats(nomFichier,type);
+}
+
+GestionnairePlats::GestionnairePlats(GestionnairePlats * gestionnaire)
+{
+	type_ = gestionnaire->type_;
+	conteneur_ = gestionnaire->conteneur_;
+}
+
+GestionnairePlats::~GestionnairePlats()
+{
+}
+
+TypeMenu GestionnairePlats::getType() const
+{
+	return type_;
+}
+
+Plat * GestionnairePlats::allouerPlat(Plat * plat)
+{
+	return new Plat(*plat);
+}
+
+Plat * GestionnairePlats::trouverPlatMoinsCher() const
+{
+	pair<string, Plat*> paireMoinsChere;
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+		if (FoncteurPlatMoinsCher().operator()(*it, paireMoinsChere)) {
+			paireMoinsChere = *it;
+		}
+	}
+
+	return paireMoinsChere.second;
+}
+
+Plat * GestionnairePlats::trouverPlatPlusCher() const
+{
+	pair<string, Plat*> pairePlusChere;
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+		if (!FoncteurPlatMoinsCher().operator()(*it, pairePlusChere)) {
+			pairePlusChere = *it;
+		}
+	}
+	return pairePlusChere.second;
+}
 
 Plat * GestionnairePlats::trouverPlat(const string & nom) const
 {
+	pair<string, Plat*> paireTrouvee;
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+		paireTrouvee = *it;
+		if (paireTrouvee.second->getNom() == nom) {				
+			return paireTrouvee.second;
+		}
+	}
 	return nullptr;
 }
 
 vector<pair<string, Plat*>> GestionnairePlats::getPlatsEntre(double borneInf, double borneSup)
 {
-	return vector<pair<string, Plat*>>();
+	vector<pair<string, Plat*>> listePlats;
+	pair<string, Plat*> paireTrouvee;
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+		paireTrouvee = *it;
+		if ((paireTrouvee.second->getPrix > borneInf) && (paireTrouvee.second->getPrix() < borneSup)) {
+			listePlats.push_back(paireTrouvee);
+		}
+	}
+	return listePlats;
 }
 
 void GestionnairePlats::lirePlats(const string& nomFichier, TypeMenu type)
@@ -63,44 +125,3 @@ void GestionnairePlats::afficherPlats(ostream & os)
 {
 }
 
-GestionnairePlats::GestionnairePlats(const string & nomFichier, TypeMenu type) : type_(type)
-{
-	lirePlats(nomFichier,type);
-}
-
-GestionnairePlats::GestionnairePlats(GestionnairePlats * gestionnaire)
-{
-	type_ = gestionnaire->type_;
-	conteneur_ = gestionnaire->conteneur_;
-}
-
-GestionnairePlats::~GestionnairePlats()
-{
-}
-
-TypeMenu GestionnairePlats::getType() const
-{
-	return type_;
-}
-
-Plat * GestionnairePlats::allouerPlat(Plat * plat)
-{
-	return new Plat(*plat);
-}
-
-Plat * GestionnairePlats::trouverPlatMoinsCher() const
-{
-	pair<string, Plat*> platMoinsCher;
-	FoncteurPlatMoinsCher f();
-	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
-		if(f(*it, platMoinsCher)){				//Marche pas, a refaire
-			platMoinsCher = *it;
- 	}
-
-	return platMoinsCher.second;
-}
-
-Plat * GestionnairePlats::trouverPlatPlusCher() const
-{
-	return nullptr;
-}

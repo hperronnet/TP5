@@ -66,30 +66,51 @@
     <ClCompile Include="Vege.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Foncteur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debogageMemoire.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Vege.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Taxable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Restaurant.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Boisson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Client.h">
+    <ClInclude Include="pointers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClientOccasionnel.h">
+    <ClInclude Include="PlatVege.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClientRegulier.h">
+    <ClInclude Include="PlatBioVege.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClientPrestige.h">
+    <ClInclude Include="PlatBio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Plat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LectureFichierEnSections.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionnaireTables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionnairePlats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionnaireGenerique.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="def.h">
@@ -98,43 +119,19 @@
     <ClInclude Include="Foncteur.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GestionnaireGenerique.h">
+    <ClInclude Include="ClientRegulier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GestionnairePlats.h">
+    <ClInclude Include="ClientPrestige.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GestionnaireTables.h">
+    <ClInclude Include="ClientOccasionnel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LectureFichierEnSections.h">
+    <ClInclude Include="Client.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Plat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlatBio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlatBioVege.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlatVege.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pointers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Table.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Taxable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vege.h">
+    <ClInclude Include="Boisson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
