@@ -143,6 +143,47 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boisson.cpp" />
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="ClientOccasionnel.cpp" />
+    <ClCompile Include="ClientPrestige.cpp" />
+    <ClCompile Include="ClientRegulier.cpp" />
+    <ClCompile Include="GestionnairePlats.cpp" />
+    <ClCompile Include="GestionnaireTables.cpp" />
+    <ClCompile Include="LectureFichierEnSections.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Plat.cpp" />
+    <ClCompile Include="PlatBio.cpp" />
+    <ClCompile Include="PlatBioVege.cpp" />
+    <ClCompile Include="PlatVege.cpp" />
+    <ClCompile Include="Restaurant.cpp" />
+    <ClCompile Include="Table.cpp" />
+    <ClCompile Include="Vege.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Boisson.h" />
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="ClientOccasionnel.h" />
+    <ClInclude Include="ClientPrestige.h" />
+    <ClInclude Include="ClientRegulier.h" />
+    <ClInclude Include="debogageMemoire.hpp" />
+    <ClInclude Include="def.h" />
+    <ClInclude Include="Foncteur.h" />
+    <ClInclude Include="GestionnaireGenerique.h" />
+    <ClInclude Include="GestionnairePlats.h" />
+    <ClInclude Include="GestionnaireTables.h" />
+    <ClInclude Include="LectureFichierEnSections.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Plat.h" />
+    <ClInclude Include="PlatBio.h" />
+    <ClInclude Include="PlatBioVege.h" />
+    <ClInclude Include="PlatVege.h" />
+    <ClInclude Include="pointers.h" />
+    <ClInclude Include="Restaurant.h" />
+    <ClInclude Include="Table.h" />
+    <ClInclude Include="Taxable.h" />
+    <ClInclude Include="Vege.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

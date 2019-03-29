@@ -14,4 +14,125 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Boisson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientOccasionnel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientPrestige.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientRegulier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GestionnairePlats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GestionnaireTables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LectureFichierEnSections.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Plat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatBio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatBioVege.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatVege.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Restaurant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vege.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Boisson.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientOccasionnel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientPrestige.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientRegulier.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debogageMemoire.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="def.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Foncteur.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionnaireGenerique.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionnairePlats.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionnaireTables.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LectureFichierEnSections.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Plat.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatBio.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatBioVege.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatVege.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pointers.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Restaurant.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Taxable.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vege.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
