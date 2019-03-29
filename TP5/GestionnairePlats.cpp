@@ -12,6 +12,16 @@
 
 
 
+Plat * GestionnairePlats::trouverPlat(const string & nom) const
+{
+	return nullptr;
+}
+
+vector<pair<string, Plat*>> GestionnairePlats::getPlatsEntre(double borneInf, double borneSup)
+{
+	return vector<pair<string, Plat*>>();
+}
+
 void GestionnairePlats::lirePlats(const string& nomFichier, TypeMenu type)
 {
 	LectureFichierEnSections fichier{ nomFichier };
@@ -49,6 +59,47 @@ pair<string, Plat*> GestionnairePlats::lirePlatDe(LectureFichierEnSections& fich
 	return pair<string, Plat*>(plat->getNom(), plat);
 }
 
-GestionnairePlats::GestionnairePlats(const string & nomFichier, TypeMenu type)
+void GestionnairePlats::afficherPlats(ostream & os)
 {
+}
+
+GestionnairePlats::GestionnairePlats(const string & nomFichier, TypeMenu type) : type_(type)
+{
+	lirePlats(nomFichier,type);
+}
+
+GestionnairePlats::GestionnairePlats(GestionnairePlats * gestionnaire)
+{
+	type_ = gestionnaire->type_;
+	conteneur_ = gestionnaire->conteneur_;
+}
+
+GestionnairePlats::~GestionnairePlats()
+{
+}
+
+TypeMenu GestionnairePlats::getType() const
+{
+	return type_;
+}
+
+Plat * GestionnairePlats::allouerPlat(Plat * plat)
+{
+	return new Plat(*plat);
+}
+
+Plat * GestionnairePlats::trouverPlatMoinsCher() const
+{
+	pair<string, Plat*> platMoinsCher;
+	FoncteurPlatMoinsCher f();
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+		f(it, platMoinsCher);												//Marche pas, a refaire
+ 	}
+
+	return platMoinsCher.second;
+}
+
+Plat * GestionnairePlats::trouverPlatPlusCher() const
+{
+	return nullptr;
 }
