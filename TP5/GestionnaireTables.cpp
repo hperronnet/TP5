@@ -6,6 +6,7 @@
 
 
 #include "GestionnaireTables.h"
+#include <iostream>
 #include "LectureFichierEnSections.h"
 
 void GestionnaireTables::lireTables(const string& nomFichier)
@@ -18,3 +19,25 @@ void GestionnaireTables::lireTables(const string& nomFichier)
 		ajouter(new Table(id, nbPlaces));
 	}
 }
+
+Table* getTable(int id) const: {
+	for (auto it = c.begin(); it != c.end(); it++)
+	{
+		if (it->id == id)
+			return it;
+	}
+}
+
+Table* getMeilleureTable(int tailleGroupe) {
+	Table* meilleureTable = new Table;
+	for (auto it = c.begin(); it != c.end(); it++)
+		if (it->nbPlaces_ < meilleureTable->nbPlaces_)
+			meilleureTable = it;
+	return it;
+}
+
+void  afficherTables(ostream&  os)  const {
+	for (auto it = c.begin(); it != c.end(); it++)
+		cout << *it;
+	}
+
