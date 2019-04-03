@@ -8,13 +8,15 @@
 
 #include <algorithm>
 #include "Plat.h"
+//#include "GestionnairePlats.h"
 
 using namespace std;
 
 
-class FoncteurPlatMoinsCher : public GestionnairePlats
+class FoncteurPlatMoinsCher
 { // TODO ok
 public:
+	FoncteurPlatMoinsCher() {};
 	bool operator() (const pair<string, Plat*> & plat1, const pair<string, Plat*> & plat2)
 	{
 		return plat1.second->getPrix() < plat2.second->getPrix();
@@ -30,7 +32,7 @@ public:
 
 	bool operator()(const pair<string, Plat*>& plat)
 	{
-		return (plat.second->getPrix() < borneSup_) && (plat.second->getPrix > borneInf_);
+		return (plat.second->getPrix() < borneSup_) && (plat.second->getPrix() > borneInf_);
 	}
 private:
 	int borneSup_;

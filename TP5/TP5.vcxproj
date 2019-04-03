@@ -153,7 +153,6 @@
     <ClCompile Include="GestionnaireTables.cpp" />
     <ClCompile Include="LectureFichierEnSections.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Plat.cpp" />
     <ClCompile Include="PlatBio.cpp" />
     <ClCompile Include="PlatBioVege.cpp" />
@@ -175,7 +174,6 @@
     <ClInclude Include="GestionnairePlats.h" />
     <ClInclude Include="GestionnaireTables.h" />
     <ClInclude Include="LectureFichierEnSections.h" />
-    <ClInclude Include="Menu.h" />
     <ClInclude Include="Plat.h" />
     <ClInclude Include="PlatBio.h" />
     <ClInclude Include="PlatBioVege.h" />

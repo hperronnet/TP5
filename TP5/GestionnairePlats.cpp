@@ -50,13 +50,8 @@ Plat * GestionnairePlats::trouverPlatMoinsCher() const
 
 Plat * GestionnairePlats::trouverPlatPlusCher() const
 {
-	pair<string, Plat*> pairePlusChere;
-	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
-		if (!FoncteurPlatMoinsCher().operator()(*it, pairePlusChere)) {
-			pairePlusChere = *it;
-		}
-	}
-	return pairePlusChere.second;
+	auto comparaison = [](const pair<string, Plat*> paire1, const pair<string, Plat*> paire2) -> bool {return paire1.second->getPrix() > paire2.second->getPrix(); };
+	return max_element(conteneur_.begin(), conteneur_.end(), comparaison)->second;
 }
 
 Plat * GestionnairePlats::trouverPlat(const string & nom) const
@@ -77,7 +72,7 @@ vector<pair<string, Plat*>> GestionnairePlats::getPlatsEntre(double borneInf, do
 	pair<string, Plat*> paireTrouvee;
 	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
 		paireTrouvee = *it;
-		if ((paireTrouvee.second->getPrix > borneInf) && (paireTrouvee.second->getPrix() < borneSup)) {
+		if ((paireTrouvee.second->getPrix() > borneInf) && (paireTrouvee.second->getPrix() < borneSup)) {
 			listePlats.push_back(paireTrouvee);
 		}
 	}

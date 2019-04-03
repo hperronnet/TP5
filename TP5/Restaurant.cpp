@@ -24,7 +24,7 @@ Restaurant::Restaurant(const string& nomFichier, string_view nom, TypeMenu momen
 	menuSoir_ {new GestionnairePlats{nomFichier, TypeMenu::Soir }},
 	fraisLivraison_{}
 {
-	tables_->lireTables(nomFichier); 
+	tables_->lireTables(nomFichier); //Execption thrown ici
 	lireAdresses(nomFichier);
 }
 
@@ -84,7 +84,7 @@ GestionnairePlats* Restaurant::getMenu(TypeMenu typeMenu) const
 	case TypeMenu::Soir  : return menuSoir_;
 	}
 	assert(false && "Le type du menu est invalide");
-	return nullptr;  // On ne devrait jamais se rendre � cette ligne.
+	return nullptr;  // On ne devrait jamais se rendre à cette ligne.
 }
 
 double Restaurant::getFraisLivraison(ZoneHabitation zone) const
@@ -138,6 +138,12 @@ bool Restaurant::operator <(const Restaurant& autre) const
 bool Restaurant::placerClients(Client* client)
 {
 	const int tailleGroupe = client->getTailleGroupe();
+	Table* table = tables_->getMeilleureTable(tailleGroupe);
+	if (table->estOccupee()) {
+		return false;
+	}
+	table->placerClients(tailleGroupe);
+	return true;
 	//TODO : trouver la table la plus adaptée pour le client. 
 	//TODO : Si possible assigner la table au client sinon retourner false.
 }
@@ -145,9 +151,12 @@ bool Restaurant::placerClients(Client* client)
 bool Restaurant::livrerClient(Client* client, const vector<string>& commande)
 {
 	if (dynamic_cast<ClientPrestige*>(client)) {
+		Table* table = tables_->getTable(ID_TABLE_LIVRAISON);
 		// TODO: Placer le client principal a la table fictive en utilisant la classe GestionnaireTables.
-		// tables_[INDEX_TABLE_LIVRAISON]->setClientPrincipal(client); // L'appel du TP4
+		//tables_[INDEX_TABLE_LIVRAISON]->setClientPrincipal(client); // L'appel du TP4
+		table->setClientPrincipal(client);
 		// TODO: Placer client à la table fictive en utilisant la classe GestionnaireTables.
+		table->placerClients(1);
 		// tables_[INDEX_TABLE_LIVRAISON]->placerClients(1); // L'appel du TP4
 		// Placer la commande
 		for (unsigned int i = 0; i < commande.size(); i++)
@@ -166,6 +175,7 @@ double Restaurant::calculerReduction(Client* client, double montant, bool estLiv
     return client->getReduction(*this, montant, estLivraison);
 }
 
+
 ostream& operator<<(ostream& os, const Restaurant& restaurant)
 {
 	os << "Le restaurant " << restaurant.getNom();
@@ -175,25 +185,22 @@ ostream& operator<<(ostream& os, const Restaurant& restaurant)
 		os << " n'a pas fait de benefice ou le chiffre n'est pas encore calcule." << endl;
 
 	os << "-Voici les tables : " << endl;
-
-	for (Table* table : restaurant.tables_)
-		os  << *table << endl;
-	os << endl;
+	restaurant.tables_->afficherTables(os);
 
 	os << "-Voici son menu : " << endl;
 	for (TypeMenu typeMenu : { TypeMenu::Matin, TypeMenu::Midi, TypeMenu::Soir }) {
-		Menu* menu = restaurant.getMenu(typeMenu);
-		os << getNomTypeMenu(typeMenu) << " : " << endl
-			<< *menu << endl
-			<< "Le plat le moins cher est : ";
+		GestionnairePlats* menu = restaurant.getMenu(typeMenu);
+		os << restaurant.getNomTypeMenu(typeMenu) << " : " << endl;
+		menu->afficherPlats(os);
+		os << "Le plat le moins cher est : ";
 		menu->trouverPlatMoinsCher()->afficherPlat(os);
 		os << endl;
 	}
 	return os;
 }
 
-
-Menu* Restaurant::menuActuel() const
+GestionnairePlats * Restaurant::menuActuel() const
 {
 	return getMenu(momentJournee_);
 }
+

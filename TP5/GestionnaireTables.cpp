@@ -9,6 +9,30 @@
 #include <iostream>
 #include "LectureFichierEnSections.h"
 
+Table * GestionnaireTables::getTable(int id) const
+{
+	Table* table;
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+		table = *it;
+		if (table->getId() == id) {
+			return table;
+		}
+	}
+	return nullptr;
+}
+
+Table * GestionnaireTables::getMeilleureTable(int tailleGroupe) const
+{
+	Table* meilleureTable = nullptr;
+	for (Table* table : conteneur_) {
+		//Possiblement une erreur ici : la premiere meilleur table n'a pas de tailleGroupe initialisé, donc peut faire bug
+		if ((table->getNbPlaces() >= tailleGroupe) && (table->getNbPlaces() < meilleureTable->getNbPlaces())) {
+			meilleureTable = table;
+		}
+	}
+	return meilleureTable;
+}
+
 void GestionnaireTables::lireTables(const string& nomFichier)
 {
 	LectureFichierEnSections fichier{ nomFichier };
@@ -20,24 +44,10 @@ void GestionnaireTables::lireTables(const string& nomFichier)
 	}
 }
 
-Table* getTable(int id) const: {
-	for (auto it = c.begin(); it != c.end(); it++)
-	{
-		if (it->id == id)
-			return it;
-	}
+void GestionnaireTables::afficherTables(ostream & os) const
+{
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++)
+		os << *it;
 }
 
-Table* getMeilleureTable(int tailleGroupe) {
-	Table* meilleureTable = new Table;
-	for (auto it = c.begin(); it != c.end(); it++)
-		if (it->nbPlaces_ < meilleureTable->nbPlaces_)
-			meilleureTable = it;
-	return it;
-}
-
-void  afficherTables(ostream&  os)  const {
-	for (auto it = c.begin(); it != c.end(); it++)
-		cout << *it;
-	}
 
