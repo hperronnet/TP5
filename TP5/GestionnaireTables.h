@@ -16,6 +16,7 @@ class GestionnaireTables : public GestionnaireGenerique<Table*, set<Table*>>
 {
 public:
 	GestionnaireTables() = default;
+	~GestionnaireTables();
 	Table* getTable(int id) const; // TODO
 	Table* getMeilleureTable(int tailleGroupe) const; // TODO
 	void lireTables(const string& nomFichier);

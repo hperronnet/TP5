@@ -38,19 +38,21 @@ Plat * GestionnairePlats::allouerPlat(Plat * plat)
 
 Plat * GestionnairePlats::trouverPlatMoinsCher() const
 {
-	pair<string, Plat*> paireMoinsChere;
-	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
-		if (FoncteurPlatMoinsCher().operator()(*it, paireMoinsChere)) {
-			paireMoinsChere = *it;
-		}
-	}
+	
+	//for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+	//	if (FoncteurPlatMoinsCher().operator()(*it, paireMoinsChere)) {
+	//		paireMoinsChere = *it;
+	//	}
+	//}
+	Plat* platMoinsCher = (*(min_element(conteneur_.begin(), conteneur_.end(), FoncteurPlatMoinsCher()))).second;
+	return platMoinsCher;
 
-	return paireMoinsChere.second;
+	//return paireMoinsChere.second;
 }
 
 Plat * GestionnairePlats::trouverPlatPlusCher() const
 {
-	auto comparaison = [](const pair<string, Plat*> paire1, const pair<string, Plat*> paire2) -> bool {return paire1.second->getPrix() > paire2.second->getPrix(); };
+	auto comparaison = [](const pair<string, Plat*> paire1, const pair<string, Plat*> paire2) -> bool {return paire1.second->getPrix() < paire2.second->getPrix(); };
 	return max_element(conteneur_.begin(), conteneur_.end(), comparaison)->second;
 }
 

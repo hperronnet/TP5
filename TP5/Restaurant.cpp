@@ -22,6 +22,7 @@ Restaurant::Restaurant(const string& nomFichier, string_view nom, TypeMenu momen
 	menuMatin_{new GestionnairePlats{nomFichier, TypeMenu::Matin}},
 	menuMidi_ {new GestionnairePlats{nomFichier, TypeMenu::Midi }},
 	menuSoir_ {new GestionnairePlats{nomFichier, TypeMenu::Soir }},
+	tables_(new GestionnaireTables()),
 	fraisLivraison_{}
 {
 	tables_->lireTables(nomFichier); //Execption thrown ici
@@ -34,8 +35,6 @@ Restaurant::~Restaurant()
 	delete menuMatin_;
 	delete menuMidi_;
 	delete menuSoir_;
-	//for (Table* table : tables_)
-	//	delete table;
 	delete tables_;
 }
 
@@ -139,11 +138,14 @@ bool Restaurant::placerClients(Client* client)
 {
 	const int tailleGroupe = client->getTailleGroupe();
 	Table* table = tables_->getMeilleureTable(tailleGroupe);
-	if (table->estOccupee()) {
-		return false;
+	if (table != nullptr) {
+		client->setTable(table);
+		table->placerClients(tailleGroupe);
+		table->setClientPrincipal(client);
+		return true;
 	}
-	table->placerClients(tailleGroupe);
-	return true;
+
+	return false;
 	//TODO : trouver la table la plus adaptée pour le client. 
 	//TODO : Si possible assigner la table au client sinon retourner false.
 }

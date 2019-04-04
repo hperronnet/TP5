@@ -1,0 +1,6 @@
+1 - 
+
+2 - Les méthodes d'une classe énérique utilisent des objets dont le type n'est pas spécifié à l'avance (c'est le but d'une classe générique)
+    Lorsqu'une classe générique est instanciée,  le compilateur créé une nouvelle classe avec le type que l'on a donné en paramètre.
+    Le compilateur à donc besoin d'un accès au méthodes de la classe générique pour pouvoir les reproduire avec le type donné en paramètre.
+    Si l'implémentation n'était pas dans le fichier.h, elle ne serait pas accéssible par le comilateur, il y aurait donc une erreur.

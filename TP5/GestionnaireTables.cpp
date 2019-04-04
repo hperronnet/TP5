@@ -9,11 +9,15 @@
 #include <iostream>
 #include "LectureFichierEnSections.h"
 
+GestionnaireTables::~GestionnaireTables()
+{
+	for (Table* table : conteneur_)
+		delete table;
+}
+
 Table * GestionnaireTables::getTable(int id) const
 {
-	Table* table;
-	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
-		table = *it;
+	for (Table* table : conteneur_) {
 		if (table->getId() == id) {
 			return table;
 		}
@@ -23,14 +27,20 @@ Table * GestionnaireTables::getTable(int id) const
 
 Table * GestionnaireTables::getMeilleureTable(int tailleGroupe) const
 {
-	Table* meilleureTable = nullptr;
+	Table* meilleureTable = new Table(-1, 1000);
+	bool meilleurTableTrouvee = false;
 	for (Table* table : conteneur_) {
-		//Possiblement une erreur ici : la premiere meilleur table n'a pas de tailleGroupe initialisé, donc peut faire bug
-		if ((table->getNbPlaces() >= tailleGroupe) && (table->getNbPlaces() < meilleureTable->getNbPlaces())) {
-			meilleureTable = table;
+		if ((!table->estOccupee()) && (table->getId() != ID_TABLE_LIVRAISON)) {
+			if ((table->getNbPlaces() >= tailleGroupe) && (table->getNbPlaces() < meilleureTable->getNbPlaces())) {
+				meilleureTable = table;
+				meilleurTableTrouvee = true;
+			}
 		}
 	}
-	return meilleureTable;
+	if (meilleurTableTrouvee)
+		return meilleureTable;
+	else
+		return nullptr;
 }
 
 void GestionnaireTables::lireTables(const string& nomFichier)
@@ -47,7 +57,7 @@ void GestionnaireTables::lireTables(const string& nomFichier)
 void GestionnaireTables::afficherTables(ostream & os) const
 {
 	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++)
-		os << *it;
+		os << *(*it);
 }
 
 

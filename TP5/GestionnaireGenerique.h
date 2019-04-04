@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include "Foncteur.h"
+#include "debogageMemoire.hpp"
 
 using namespace  std;
 
@@ -50,7 +51,7 @@ C GestionnaireGenerique<T, C>::getConteneur() const
 
 template<typename T, typename C>
 void GestionnaireGenerique<T, C>::ajouter(T t) {
-	conteneur_.insert(conteneur_.end(), t);
+	conteneur_.insert(t);
 }
 
 template<typename T, typename C>
