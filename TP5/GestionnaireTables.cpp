@@ -1,7 +1,7 @@
 /********************************************
 * Titre: Travail pratique #5 - gestionnaireTables.cpp
-* Date: 21 mars 2019
-* Auteur: Moussa Traor� & Ryan Hardie & Wassim Khene
+* Date: 4 Avril 2019
+* Auteurs :  Hugo Perronnet 1885263 - Philippe Maisonneuve 1959052
 *******************************************/
 
 
@@ -30,14 +30,15 @@ Table * GestionnaireTables::getMeilleureTable(int tailleGroupe) const
 	Table* meilleureTable = new Table(-1, 1000);
 	bool meilleurTableTrouvee = false;
 	for (Table* table : conteneur_) {
-		if ((!table->estOccupee()) && (table->getId() != ID_TABLE_LIVRAISON)) {
+		if ((!table->estOccupee()) && (table->getId() != ID_TABLE_LIVRAISON)) { //On vérifie que la table ne soit pas occupée et que ce n'est pas la table de livraison
+			//On vérifie aussi quela table peut accueuillir le groupe, et qu'elle comporte moins de place que la meilleur table précédemment trouvée
 			if ((table->getNbPlaces() >= tailleGroupe) && (table->getNbPlaces() < meilleureTable->getNbPlaces())) {
 				meilleureTable = table;
 				meilleurTableTrouvee = true;
 			}
 		}
 	}
-	if (meilleurTableTrouvee)
+	if (meilleurTableTrouvee) //Si on a trouvé au moins une table remplissant les conditions
 		return meilleureTable;
 	else
 		return nullptr;

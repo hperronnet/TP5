@@ -1,7 +1,7 @@
 /********************************************
 * Titre: Travail pratique #5 - gestionnaireTables.h
-* Date: 21 mars 2019
-* Auteur: Moussa Traor� & Ryan Hardie & Wassim Khene
+* Date: 4 Avril 2019
+* Auteurs :  Hugo Perronnet 1885263 - Philippe Maisonneuve 1959052
 *******************************************/
 
 #pragma once
@@ -15,12 +15,21 @@
 class GestionnaireTables : public GestionnaireGenerique<Table*, set<Table*>>
 {
 public:
+	//Constructeur
 	GestionnaireTables() = default;
+
+	//Desctructeur
 	~GestionnaireTables();
-	Table* getTable(int id) const; // TODO
-	Table* getMeilleureTable(int tailleGroupe) const; // TODO
+
+	//Retourne la table ayant l'ID donnée en paramètre
+	Table* getTable(int id) const;
+
+	//Retourne la meilleure table en fonction de la taille du groupe donné en paramètre
+	Table* getMeilleureTable(int tailleGroupe) const;
+
 	void lireTables(const string& nomFichier);
 
-	void afficherTables(ostream& os) const; // TODO
+	//Affiche les tables
+	void afficherTables(ostream& os) const;
 
 };

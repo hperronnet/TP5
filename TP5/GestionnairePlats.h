@@ -1,7 +1,7 @@
 /********************************************
 * Titre: Travail pratique #5 - gestionnairePlats.h
-* Date: 21 mars 2019
-* Auteur: Moussa Traor� & Ryan Hardie & Wassim Khene
+* Date: 4 Avril 2019
+* Auteurs :  Hugo Perronnet 1885263 - Philippe Maisonneuve 1959052
 *******************************************/
 
 #pragma once
@@ -22,20 +22,32 @@ using namespace std;
 class GestionnairePlats : public GestionnaireGenerique<pair<string, Plat*>, map<string, Plat*>>
 {
 public:
-	GestionnairePlats(const string& nomFichier, TypeMenu type); //TODO ok
-	GestionnairePlats(GestionnairePlats* gestionnaire); // TODO ok
+	//Constructeur par paramètre
+	GestionnairePlats(const string& nomFichier, TypeMenu type);
 
-	~GestionnairePlats(); // TODO ok
+	//Constructeur de copie
+	GestionnairePlats(GestionnairePlats* gestionnaire);
 
-	TypeMenu getType() const; // TODO ok
+	//Destructeur
+	~GestionnairePlats();
 
-	Plat* allouerPlat(Plat*); // TODO ok
+	TypeMenu getType() const;
 
-	Plat* trouverPlatMoinsCher() const; // TODO ok
-	Plat* trouverPlatPlusCher() const; // TODO ok
+	//Retourne un pointeur vers un nouveau plat contenant les propriétés du Plat passé en paramètre
+	Plat* allouerPlat(Plat*);
 
-	Plat* trouverPlat(const string& nom) const; // TODO ok
-	vector<pair<string, Plat*>> getPlatsEntre(double borneInf, double borneSup); // TODO ok
+	//Utilise le FoncteurPlatMoinsCher pour trouver le plat le moins cher d'un conteneur
+	Plat* trouverPlatMoinsCher() const;
+
+	//Utilise une fonction Lambda et la STL pour trouver le plat le plus cher d'un conteneur
+	Plat* trouverPlatPlusCher() const;
+
+	//Trouve un plat dans un conteneur à partir de son nom
+	Plat* trouverPlat(const string& nom) const;
+
+	//Retourne tous les plas dont les prix sont entre borneSup et borneInf
+	vector<pair<string, Plat*>> getPlatsEntre(double borneInf, double borneSup);
+
 	void lirePlats(const string& nomFichier, TypeMenu type);
 	pair<string, Plat*> lirePlatDe(LectureFichierEnSections& fichier);
 

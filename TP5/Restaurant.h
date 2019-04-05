@@ -1,8 +1,7 @@
-
 /*
-* Titre : Restaurant.h - Travail Pratique #1
-* Date : 18 Janvier 2019
-* Auteur : Allan BEDDOUK
+* Titre : Restaurant.h - Travail Pratique #5
+* Date: 4 Avril 2019
+* Auteurs :  Hugo Perronnet 1885263 - Philippe Maisonneuve 1959052
 */
 
 #ifndef RESTAURANT_H
@@ -23,8 +22,8 @@ class Client;
 class Table;
 class Restaurant {
 public:
-	// Constructeurs.
 
+	// Constructeurs.
 	Restaurant();
 	Restaurant(const string& nomFichier, string_view nom, TypeMenu moment);
 	Restaurant(const Restaurant& autre) = delete;  //? Le programme ne fait jamais de copie de restaurant,
@@ -34,17 +33,19 @@ public:
 	~Restaurant();
 
 	// Setters.
-
 	void setMoment(TypeMenu moment);
 	void setNom(string_view nom); 
     void setChiffreAffaire( double chiffre);
-	// Getters.
 
+	// Getters.
 	string getNom() const;
 	TypeMenu getMoment() const;
     double getChiffreAffaire();
-	GestionnaireTables* getTables() const; // TODO : À implémenter
-	GestionnairePlats* getMenu(TypeMenu typeMenu) const; // TODO: retourner un GestionnairePlats* a la place
+
+	//Retourne un conteneur contenant toutes les tables
+	GestionnaireTables* getTables() const;
+
+	GestionnairePlats* getMenu(TypeMenu typeMenu) const;
 	double getFraisLivraison(ZoneHabitation zone) const;
 	string getNomTypeMenu(TypeMenu typeMenu) const;
 

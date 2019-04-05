@@ -1,7 +1,7 @@
 /********************************************
 * Titre: Travail pratique #5 - Foncteur.h
-* Date: 21 mars 2019
-* Auteur: Moussa Traor� & Ryan Hardie & Wassim Khene
+* Date: 4 Avril 2019
+* Auteurs :  Hugo Perronnet 1885263 - Philippe Maisonneuve 1959052 
 *******************************************/
 
 #pragma once
@@ -14,9 +14,11 @@ using namespace std;
 
 
 class FoncteurPlatMoinsCher
-{ // TODO ok
+{
 public:
-	FoncteurPlatMoinsCher() {};
+	/**
+	* operateur()  de FoncteurPlatMoinscher : prend deux paires de <strin,Plat*> et retourne le moins cher des deux
+	*/
 	bool operator() (const pair<string, Plat*> & plat1, const pair<string, Plat*> & plat2)
 	{
 		return plat1.second->getPrix() < plat2.second->getPrix();
@@ -25,11 +27,12 @@ public:
 };
 
 class FoncteurIntervalle
-{ // TODO ok
+{
 public:
-
+	// Constructeur qui prend en paramètre les bornes inférieures et supérieures
 	FoncteurIntervalle(int borneInf, int borneSup) : borneInf_(borneInf), borneSup_(borneSup){}
 
+	//Opérateur () qui retorune VRAI si le plat entré en paramètre si situe dans l'intervalle, FALSE sinon.
 	bool operator()(const pair<string, Plat*>& plat)
 	{
 		return (plat.second->getPrix() < borneSup_) && (plat.second->getPrix() > borneInf_);

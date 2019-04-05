@@ -1,7 +1,7 @@
 /********************************************
 * Titre: Travail pratique #5 - gestionnairePlats.cpp
-* Date: 21 mars 2019
-* Auteur: Moussa Traor� & Ryan Hardie & Wassim Khene
+* Date: 4 Avril 2019
+* Auteurs :  Hugo Perronnet 1885263 - Philippe Maisonneuve 1959052
 *******************************************/
 
 #include "GestionnairePlats.h"
@@ -18,12 +18,17 @@ GestionnairePlats::GestionnairePlats(const string & nomFichier, TypeMenu type) :
 
 GestionnairePlats::GestionnairePlats(GestionnairePlats * gestionnaire)
 {
-	type_ = gestionnaire->type_;
-	conteneur_ = gestionnaire->conteneur_;
+	for (auto it = gestionnaire->conteneur_.begin(); it != gestionnaire->conteneur_.end(); it++) { //Deep copy
+		pair <string, Plat*> paire = *it;
+		ajouter(paire);
+	}
 }
 
 GestionnairePlats::~GestionnairePlats()
 {
+	for (pair<string, Plat*> paire : conteneur_) {
+		delete paire.second;
+	}
 }
 
 TypeMenu GestionnairePlats::getType() const
@@ -38,20 +43,13 @@ Plat * GestionnairePlats::allouerPlat(Plat * plat)
 
 Plat * GestionnairePlats::trouverPlatMoinsCher() const
 {
-	
-	//for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
-	//	if (FoncteurPlatMoinsCher().operator()(*it, paireMoinsChere)) {
-	//		paireMoinsChere = *it;
-	//	}
-	//}
-	Plat* platMoinsCher = (*(min_element(conteneur_.begin(), conteneur_.end(), FoncteurPlatMoinsCher()))).second;
+	Plat* platMoinsCher = (*(min_element(conteneur_.begin(), conteneur_.end(), FoncteurPlatMoinsCher()))).second;//Utilisation Foncteur
 	return platMoinsCher;
-
-	//return paireMoinsChere.second;
 }
 
 Plat * GestionnairePlats::trouverPlatPlusCher() const
 {
+	//utilisation Fonction Lambda
 	auto comparaison = [](const pair<string, Plat*> paire1, const pair<string, Plat*> paire2) -> bool {return paire1.second->getPrix() < paire2.second->getPrix(); };
 	return max_element(conteneur_.begin(), conteneur_.end(), comparaison)->second;
 }
@@ -59,7 +57,7 @@ Plat * GestionnairePlats::trouverPlatPlusCher() const
 Plat * GestionnairePlats::trouverPlat(const string & nom) const
 {
 	pair<string, Plat*> paireTrouvee;
-	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) { //On parcours le conteneur avec un iterateur et retourne la plat qui correspond au nom
 		paireTrouvee = *it;
 		if (paireTrouvee.second->getNom() == nom) {				
 			return paireTrouvee.second;
@@ -72,9 +70,9 @@ vector<pair<string, Plat*>> GestionnairePlats::getPlatsEntre(double borneInf, do
 {
 	vector<pair<string, Plat*>> listePlats;
 	pair<string, Plat*> paireTrouvee;
-	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) {
+	for (auto it = conteneur_.begin(); it != conteneur_.end(); it++) { //On parcours le conteneur avec un iterateur
 		paireTrouvee = *it;
-		if ((paireTrouvee.second->getPrix() > borneInf) && (paireTrouvee.second->getPrix() < borneSup)) {
+		if ((paireTrouvee.second->getPrix() > borneInf) && (paireTrouvee.second->getPrix() < borneSup)) { //On ajoute le plat a la liste si il est dans les bornes
 			listePlats.push_back(paireTrouvee);
 		}
 	}
@@ -120,5 +118,8 @@ pair<string, Plat*> GestionnairePlats::lirePlatDe(LectureFichierEnSections& fich
 
 void GestionnairePlats::afficherPlats(ostream & os)
 {
+	for (pair<string, Plat*> plat : conteneur_) {
+		os << plat.second;
+	}
 }
 

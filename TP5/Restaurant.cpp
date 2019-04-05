@@ -1,6 +1,7 @@
 /*
-* Date : 25 f�vrier 2019
-* Auteur : AbdeB
+* Titre : Travail pratique #5 - restaurant.cpp
+* Date: 4 Avril 2019
+* Auteurs :  Hugo Perronnet 1885263 - Philippe Maisonneuve 1959052
 */
 
 #include "Restaurant.h"
@@ -22,10 +23,10 @@ Restaurant::Restaurant(const string& nomFichier, string_view nom, TypeMenu momen
 	menuMatin_{new GestionnairePlats{nomFichier, TypeMenu::Matin}},
 	menuMidi_ {new GestionnairePlats{nomFichier, TypeMenu::Midi }},
 	menuSoir_ {new GestionnairePlats{nomFichier, TypeMenu::Soir }},
-	tables_(new GestionnaireTables()),
+	tables_(new GestionnaireTables()),									//On créé un gestionnaire de tables
 	fraisLivraison_{}
 {
-	tables_->lireTables(nomFichier); //Execption thrown ici
+	tables_->lireTables(nomFichier);
 	lireAdresses(nomFichier);
 }
 
@@ -40,7 +41,6 @@ Restaurant::~Restaurant()
 
 
 // Setters.
-
 void Restaurant::setMoment(TypeMenu moment)
 {
 	momentJournee_ = moment; 
@@ -106,8 +106,8 @@ void Restaurant::lireAdresses(const string& nomFichier)
 		fraisLivraison_[zone] = frais;
 	}
 }
-// Autres methodes.
 
+// Autres methodes.
 void Restaurant::libererTable(int id)
 {
 	if (Table* table = tables_->getTable(id)) {
@@ -116,7 +116,6 @@ void Restaurant::libererTable(int id)
 		table->libererTable(); 
 	}
 }
-
 
 void Restaurant::commanderPlat(string_view nom, int idTable)
 {
@@ -128,7 +127,6 @@ void Restaurant::commanderPlat(string_view nom, int idTable)
 	cout << "Erreur : table vide ou plat introuvable." << endl << endl;
 }
 
-
 bool Restaurant::operator <(const Restaurant& autre) const 
 {
 	return chiffreAffaire_ < autre.chiffreAffaire_;
@@ -136,9 +134,9 @@ bool Restaurant::operator <(const Restaurant& autre) const
 
 bool Restaurant::placerClients(Client* client)
 {
-	const int tailleGroupe = client->getTailleGroupe();
-	Table* table = tables_->getMeilleureTable(tailleGroupe);
-	if (table != nullptr) {
+	const int tailleGroupe = client->getTailleGroupe();			//On récupère la taille du groupe de clients
+	Table* table = tables_->getMeilleureTable(tailleGroupe);	//On répcupère la meilleure table pour les clients
+	if (table != nullptr) {										//Si on trouve la table, on y place le client
 		client->setTable(table);
 		table->placerClients(tailleGroupe);
 		table->setClientPrincipal(client);
@@ -153,23 +151,24 @@ bool Restaurant::placerClients(Client* client)
 bool Restaurant::livrerClient(Client* client, const vector<string>& commande)
 {
 	if (dynamic_cast<ClientPrestige*>(client)) {
-		Table* table = tables_->getTable(ID_TABLE_LIVRAISON);
-		// TODO: Placer le client principal a la table fictive en utilisant la classe GestionnaireTables.
-		//tables_[INDEX_TABLE_LIVRAISON]->setClientPrincipal(client); // L'appel du TP4
-		table->setClientPrincipal(client);
-		// TODO: Placer client à la table fictive en utilisant la classe GestionnaireTables.
-		table->placerClients(1);
-		// tables_[INDEX_TABLE_LIVRAISON]->placerClients(1); // L'appel du TP4
-		// Placer la commande
-		for (unsigned int i = 0; i < commande.size(); i++)
+		Table* table = tables_->getTable(ID_TABLE_LIVRAISON);		//On récupère la table réservéé pour les livraisons
+		table->setClientPrincipal(client);							//Le client devient clientPirncipale de la table
+		table->placerClients(1);									//On place 1 client à la table
+		for (unsigned int i = 0; i < commande.size(); i++)			
 			commanderPlat(commande[i], INDEX_TABLE_LIVRAISON);
-		// Liberer la table fictive.
-		libererTable(INDEX_TABLE_LIVRAISON);
+		libererTable(INDEX_TABLE_LIVRAISON);						//On libère la table tout de suite après la commande
 		return true;
 	}
 	else {
 		return false;
 	}
+
+		// TODO: Placer le client principal a la table fictive en utilisant la classe GestionnaireTables.
+		//tables_[INDEX_TABLE_LIVRAISON]->setClientPrincipal(client); // L'appel du TP4
+		// TODO: Placer client à la table fictive en utilisant la classe GestionnaireTables.
+		// tables_[INDEX_TABLE_LIVRAISON]->placerClients(1); // L'appel du TP4
+		// Placer la commande
+		// Liberer la table fictive.
 }
 
 double Restaurant::calculerReduction(Client* client, double montant, bool estLivraison)

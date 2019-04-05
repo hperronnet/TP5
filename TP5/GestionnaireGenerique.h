@@ -1,7 +1,7 @@
 /********************************************
 * Titre: Travail pratique #5 - GestionnaireGenerique.h
-* Date: 21 mars 2019
-* Auteur: Moussa Traor� & Ryan Hardie & Wassim Khene
+* Date: 4 Avril 2019
+* Auteurs :  Hugo Perronnet 1885263 - Philippe Maisonneuve 1959052
 *******************************************/
 
 #pragma once
@@ -22,19 +22,19 @@ public:
 	* Fonction getConteneur()
 	* Retourne une copie du conteneur_.
 	*/
-	C getConteneur() const; //TODO ok
+	C getConteneur() const;
 
 	/** 
 	* Fonction ajouter(T t)
 	* Ajoute un élément dans le conteneur_
 	*/
-	void ajouter(T t);//TODO ok
+	void ajouter(T t);
 
 	/**
 	* Fonction getNombreElements()
 	* retourne le nombre d'élements dans conteneur_
 	*/
-	int getNombreElements() const;//TODO ok
+	int getNombreElements() const;
 
 protected:
 	C conteneur_;
@@ -50,7 +50,8 @@ C GestionnaireGenerique<T, C>::getConteneur() const
 }
 
 template<typename T, typename C>
-void GestionnaireGenerique<T, C>::ajouter(T t) {
+void GestionnaireGenerique<T, C>::ajouter(T t) 
+{
 	conteneur_.insert(t);
 }
 
